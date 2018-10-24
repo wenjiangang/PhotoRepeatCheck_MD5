@@ -10,7 +10,7 @@ public class filesArray {
 
 	    for (int i = 0; i < tempList.length; i++) {
 	        if (tempList[i].isFile()) {
-//	              System.out.println("文     件：" + tempList[i]);
+	              System.out.println("文     件：" + tempList[i]);
 	            files.add(tempList[i].toString());
 	        }
 	        if (tempList[i].isDirectory()) {

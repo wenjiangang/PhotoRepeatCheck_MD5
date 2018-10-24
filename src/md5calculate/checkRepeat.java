@@ -10,7 +10,7 @@ public class checkRepeat {
 
 	public static void main(String[] args) {
 	
-		String targetdrictory = "C:/Users/jacky/Desktop/å†²æ´—ç…§ç‰‡";
+		String targetdrictory = "C:/Users/jacky/Desktop/Ä¿Â¼";
 		String newdrictory = "C:/Users/jacky/Desktop/new";
 		String logdrictory = "C:/Users/jacky/Desktop/log.txt";
 //		System.out.println(filesArray.getFiles(s));
@@ -31,7 +31,7 @@ public class checkRepeat {
 			md5lists[i] = md5Generator.getMD5(t);
 			dict.put(md5lists[i], list.get(i).toString());
 
-//			readLog.writeFile(logdrictory, md5lists[i]+"="+list.get(i).toString());
+			readLog.writeFile(logdrictory, md5lists[i]+"="+list.get(i).toString());
 //			System.out.println(i+"--->:"+md5lists[i]);
 
 		}
@@ -45,7 +45,7 @@ public class checkRepeat {
 		System.out.println("new files numbers:" + newlist.size());
 		Map<String, String> existmd5=new HashMap<String,String>();
 		existmd5=readLog.readFile(logdrictory);
-		System.out.println(existmd5);//ï¿½ï¿½Ó¡ï¿½ï¿½logï¿½Äµï¿½ï¿½ï¿½Ö®Ç°ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Úµï¿½md5
+		System.out.println(existmd5);//ÔÚlogÖÐ´òÓ¡md5
 		for (int j = 0; j < newlist.size(); j++) {
 			File newt = new File(newlist.get(j).toString());
 			String newmd5 = md5Generator.getMD5(newt);
@@ -54,7 +54,7 @@ public class checkRepeat {
 				if (existmd5.get(newmd5) != null) {
 					System.out.println(newlist.get(j).toString() + "---exist!!!!--->>" + dict.get(newmd5));
 					if (newt.delete()) {
-						System.out.println("deleted!!!!!"); //É¾ï¿½ï¿½ï¿½ï¿½logï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Úµï¿½md5ï¿½ï¿½Æ¬ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Æ¬
+						System.out.println("deleted!!!!!"); //É¾³ýÒÔ¼°´æÔÚµÄÕÕÆ¬
 					}
 				}
 			} catch (Exception e) {

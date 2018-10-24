@@ -57,7 +57,7 @@ public class md5Generator {
 		File file1 = new File("C:/Users/jacky/Desktop/b.txt");
 		String md51 = getMD5(file1);
 		long endtime = System.currentTimeMillis();
-		System.out.println("MD5:\n" + md5 +"\n"+md51+ "\n ºÄÊ±:" + ((endtime - beginTime) / 1000) + "s");
+		System.out.println("MD5:\n" + md5 +"\n"+md51+ "\n ºÄÊ±:" + ((endtime - beginTime) ) + "ms");
 	}
 
 }

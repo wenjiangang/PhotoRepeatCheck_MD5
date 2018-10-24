@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
-encoding//src/md5calculate=UTF-8
-encoding//src/md5calculate/checkRepeat.java=UTF-8
+encoding//src/md5calculate=GBK
+encoding//src/md5calculate/checkRepeat.java=GBK
+encoding//src/md5calculate/filesArray.java=GBK
+encoding//src/md5calculate/md5Generator.java=GBK
+encoding//src/md5calculate/readLog.java=GBK
+encoding/<project>=GBK
 encoding/README=UTF-8

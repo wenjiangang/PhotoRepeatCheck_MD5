@@ -33,7 +33,7 @@ public class mergeDirectory {
 			existfilesname.put(t.getName(), t.getName());
 		}
 //		System.out.println(existfilesname+"\r\n");
-//		deleteRepeat.deleteRepeat(pathSource);//先删除源目录下重复的文件
+		deleteRepeat.deleteRepeat(pathSource);//先删除源目录下重复的文件
 		ArrayList<String> listSource = filesArray.getFiles(pathSource);//用于存放目录下所有的文件路径
 		System.out.println("source file numbers:" + listSource.size());
 		
@@ -56,8 +56,8 @@ public class mergeDirectory {
 				Path toPath=Paths.get(pathDestination+"/"+df.format(new Date()).toString()+" "+k.getName());//目标目录中的文件名重命名前面加上日期
 				System.out.println("move "+fromPath+"---->"+toPath);
 				try{
-//					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
-					Files.move(fromPath,toPath); //用于移动文件，删除原文件
+					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
+//					Files.move(fromPath,toPath); //用于移动文件，删除原文件
 					mark++;
 				}catch (IOException e){
 					e.printStackTrace();
@@ -73,8 +73,8 @@ public class mergeDirectory {
 				Path toPath=Paths.get(pathDestination+"/"+k.getName());
 				System.out.println("move "+fromPath+"---->"+toPath);
 				try{
-//					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
-					Files.move(fromPath,toPath); //用于移动文件，删除原文件
+					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
+//					Files.move(fromPath,toPath); //用于移动文件，删除原文件
 					mark++;
 				}catch (IOException e){
 					e.printStackTrace();
@@ -91,7 +91,7 @@ public class mergeDirectory {
 	}
 	
 	public static void main(String[] args){
-		merge("C:/Users/Unicom/Desktop/source","C:/Users/Unicom/Desktop/new"); //用于测试
+		merge("F:/照片","F:/所有照片"); //用于测试
 	}
 
 }

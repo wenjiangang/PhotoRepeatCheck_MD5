@@ -6,13 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.SynchronousQueue;
 
-public class checkRepeat {
+/*
+ * 用于比较两个目录下文件的重复，将md5存入log
+ * 
+ * 
+ */
 
-	public static void main(String[] args) {
+public class checkRepeat {
 	
-		String targetdrictory = "C:/Users/jacky/Desktop/目录";
-		String newdrictory = "C:/Users/jacky/Desktop/new";
-		String logdrictory = "C:/Users/jacky/Desktop/log.txt";
+	public static void compare(String newdrictory,String targetdrictory,String logdrictory){
 //		System.out.println(filesArray.getFiles(s));
 		ArrayList<String> list = filesArray.getFiles(targetdrictory);
 		System.out.println("files numbers:" + list.size());
@@ -54,16 +56,25 @@ public class checkRepeat {
 				if (existmd5.get(newmd5) != null) {
 					System.out.println(newlist.get(j).toString() + "---exist!!!!--->>" + dict.get(newmd5));
 					if (newt.delete()) {
-						System.out.println("deleted!!!!!"); //删除以及存在的照片
+						System.out.println("deleted!!!!!"); //删除已经存在的照片
 					}
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+	}
+	}
+
+	public static void main(String[] args) {
+	
+		String targetdrictory = "C:/Users/jacky/Desktop/目录";
+		String newdrictory = "C:/Users/jacky/Desktop/new";
+		String logdrictory = "C:/Users/jacky/Desktop/log.txt";
+		compare(newdrictory,targetdrictory,logdrictory);
 
 		}
 
-	}
+
 
 }

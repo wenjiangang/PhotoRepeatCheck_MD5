@@ -17,7 +17,7 @@ public class md5Generator {
 	public static String getMD5(File file) {
 		FileInputStream fileInputStream = null;
 		try {
-			MessageDigest MD5 = MessageDigest.getInstance("MD5");
+			MessageDigest MD5 = MessageDigest.getInstance("MD5");//采用MD5算法，也可以使用SHA1、SHA256，MD5算法对于空文件可能会计算出相同的MD5
 			fileInputStream = new FileInputStream(file);
 			byte[] buffer = new byte[8192];
 			int length;
@@ -52,12 +52,14 @@ public class md5Generator {
 
 	public static void main(String[] args) {
 		long beginTime = System.currentTimeMillis();
-		File file = new File("C:/Users/jacky/Desktop/a.txt"); //测试
+		File file = new File("C:/Users/Unicom/Desktop/source/a.txt"); //测试，空的txt和word具有相同的md5
+		System.out.println(file);
+		
 		String md5 = getMD5(file);
-		File file1 = new File("C:/Users/jacky/Desktop/b.txt");
-		String md51 = getMD5(file1);
+		File file1 = new File("C:/Users/Unicom/Desktop/source/b.docx");
+		String md5_1 = getMD5(file1);
 		long endtime = System.currentTimeMillis();
-		System.out.println("MD5:\n" + md5 +"\n"+md51+ "\n 耗时:" + ((endtime - beginTime) ) + "ms");
+		System.out.println("MD5:\n" + md5 +"\n"+md5_1+ "\n 耗时:" + ((endtime - beginTime) ) + "ms");
 	}
 
 }

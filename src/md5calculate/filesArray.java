@@ -16,12 +16,12 @@ public class filesArray {
 
 	    for (int i = 0; i < tempList.length; i++) {
 	        if (tempList[i].isFile()) {
-	              System.out.println("file:" + tempList[i]);
+//	              System.out.println("file:" + tempList[i]);
 	            files.add(tempList[i].toString());
 	        }
 	        if (tempList[i].isDirectory()) {
-	              System.out.println("directory:" + tempList[i]); 
-	              files.addAll(getFiles(tempList[i].toString()));
+//	              System.out.println("directory:" + tempList[i]); 
+	              files.addAll(getFiles(tempList[i].toString()));//优化后通过递归方法读取到下级目录内的文件
 	        }
 	    }
 	    return files;

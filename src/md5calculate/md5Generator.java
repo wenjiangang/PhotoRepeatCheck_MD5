@@ -17,7 +17,7 @@ public class md5Generator {
 	public static String getMD5(File file) {
 		FileInputStream fileInputStream = null;
 		try {
-			MessageDigest MD5 = MessageDigest.getInstance("MD5");//采用MD5算法，也可以使用SHA1、SHA256，MD5算法对于空文件可能会计算出相同的MD5
+			MessageDigest MD5 = MessageDigest.getInstance("MD5");//采用MD5算法，部分空的文件可能具有相同的md5值，也可以使用SHA1、SHA256
 			fileInputStream = new FileInputStream(file);
 			byte[] buffer = new byte[8192];
 			int length;

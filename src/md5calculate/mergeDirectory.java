@@ -33,7 +33,7 @@ public class mergeDirectory {
 			existfilesname.put(t.getName(), t.getName());
 		}
 //		System.out.println(existfilesname+"\r\n");
-		deleteRepeat.deleteRepeat(pathSource);//先删除源目录下重复的文件
+//		deleteRepeat.deleteRepeat(pathSource);//先删除源目录下重复的文件
 		ArrayList<String> listSource = filesArray.getFiles(pathSource);//用于存放目录下所有的文件路径
 		System.out.println("source file numbers:" + listSource.size());
 		
@@ -75,6 +75,7 @@ public class mergeDirectory {
 				try{
 					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
 //					Files.move(fromPath,toPath); //用于移动文件，删除原文件
+					existfilesname.put(k.getName(), k.getName()); //用于在新目录下添加文件名称记录，源文件中可能不同的目录下具有相同的文件名但是md5不一样的情况
 					mark++;
 				}catch (IOException e){
 					e.printStackTrace();
@@ -91,7 +92,7 @@ public class mergeDirectory {
 	}
 	
 	public static void main(String[] args){
-		merge("F:/照片","F:/所有照片"); //用于测试
+		merge("D:/照片","F:/所有照片"); //用于测试
 	}
 
 }

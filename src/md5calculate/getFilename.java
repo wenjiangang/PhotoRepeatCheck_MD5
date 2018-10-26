@@ -11,5 +11,7 @@ public class getFilename {
 		System.out.println(t.getName());
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         System.out.println(df.format(new Date())+" "+t.getName());// new Date()为获取当前系统时间
+        System.out.println(t.lastModified());
+        System.out.println(stampToDate.stamptodate(t.lastModified()));
 	}
 }

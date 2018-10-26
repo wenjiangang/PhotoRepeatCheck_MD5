@@ -5,10 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import md5calculate.stampToDate;
 
 /*
  * merge方法用于合并两个文件夹，pathSource为源目录，pathDestination为合并后的目标目录
@@ -19,8 +18,6 @@ import java.util.HashMap;
 
 public class mergeDirectory {
 	public static void merge(String pathSource,String pathDestination){
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-//        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间，注意import java.util.Date;
 		
 //		deleteRepeat.deleteRepeat(pathDestination);//先删除目标目录下重复的文件
 		ArrayList<String> listDestination = filesArray.getFiles(pathDestination);//用于存放目录下所有的文件路径
@@ -53,7 +50,7 @@ public class mergeDirectory {
 				 * 
 				 */
 				Path fromPath=Paths.get(listSource.get(i));
-				Path toPath=Paths.get(pathDestination+"/"+df.format(new Date()).toString()+" "+k.getName());//目标目录中的文件名重命名前面加上日期
+				Path toPath=Paths.get(pathDestination+"/"+stampToDate.stamptodate(k.lastModified())+" "+k.getName());//目标目录中的文件名重命名前面加上文件修改的日期
 				System.out.println("move "+fromPath+"---->"+toPath);
 				try{
 					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
@@ -92,7 +89,7 @@ public class mergeDirectory {
 	}
 	
 	public static void main(String[] args){
-		merge("D:/照片","F:/所有照片"); //用于测试
+		merge("C:/Users/Unicom/Desktop/source","C:/Users/Unicom/Desktop/new"); //用于测试
 	}
 
 }

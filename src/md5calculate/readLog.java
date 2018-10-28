@@ -12,10 +12,10 @@ import java.util.Map;
 public class readLog {
 
 	public static void main(String args[]) {
-		String pathname = "input.txt";
-		String text = "hello world!";
-		readFile(pathname);
+		String pathname = "E:/input.txt";
+		String text = "hello=2.txt";
 		writeFile(pathname, text);
+		System.out.println(readFile(pathname));
 	}
 
 	/**
@@ -31,12 +31,12 @@ public class readLog {
 		) {
 			String line;
 			// 网友推荐更加简洁的写法
-			String[] aa=null;
+			String[] aa = null;
 			while ((line = br.readLine()) != null) {
 				// 一次读入一行数据
-				aa=line.split("=");
+				aa = line.split("=");
 //				System.out.println(line);
-				list.put(aa[0],aa[1]);
+				list.put(aa[0], aa[1]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -48,34 +48,30 @@ public class readLog {
 	 * 写入TXT文件
 	 */
 	public static void writeFile(String pathname, String text) {
-//		try {
-//			File writeName = new File(pathname); // 相对路径，如果没有则要建立一个新的output.txt文件
-//			if(!writeName.exists()) {
-//				writeName.createNewFile(); // 如果不存在的话创建新文件
-//			}
-//			try (FileWriter writer = new FileWriter(writeName); BufferedWriter out = new BufferedWriter(writer)) {
-//				out.write("\n"+text+"\r\n"); // \r\n即为换行
-//				out.flush(); // 把缓存区内容压入文件
-//				out.close();
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 
-		File writeName = new File(pathname);
-		BufferedWriter out = null;
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(writeName, true)));
-			out.write(text+"\r\n");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+			File writeName = new File(pathname);
+			if (!writeName.exists()) {
+				writeName.createNewFile(); // 如果不存在的话创建新文件
+			}
+			BufferedWriter out = null;
 			try {
-				out.close();
-			} catch (IOException e) {
+				out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(writeName, true)));
+				out.write(text + "\r\n");
+			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 			}
 
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
 	}
 }

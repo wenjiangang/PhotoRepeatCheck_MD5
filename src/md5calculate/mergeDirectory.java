@@ -14,8 +14,8 @@ import md5calculate.stampToDate;
 
 /*
  * merge方法用于合并两个文件夹，pathSource为源目录，pathDestination为合并后的目标目录
- * line 25先删除目标目录下重复的文件，可选
- * line 36先删除源目录下重复的文件，可选
+ * deleteRepeat.deleteRepeat(pathDestination)先删除目录下重复的文件，可选
+ * 
  * 
  */
 

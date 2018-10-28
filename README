@@ -1,1 +1,5 @@
-淇敼閰嶇疆
+	mergeDirectory用于对两个文件夹内容进行合并。
+mergeDirectory.merge(String,String)该方法每次先调用filesArray.getFiles(String)得到目录下的所有文件路径，然后调用deleteRepeat.deleteRepeat(String)方法，删除目标路径下的重复文件。然后计算目标路径下的文件的MD5值，并存入HashMap dict。将文件名存入HashMap existfilesname。然后对源目录下进行重复文件的删除，依次对比源目录下所有的文件是否能在dict中找到MD5值，并且判断是否能在existfilesname中找到文件名，若能找到MD5值，则不进行复制。若找不到MD5值并且找不到相同的文件名则直接进行复制。若找不到MD5值但是能找到相同的文件名，则对文件进行重命名后复制到目标路径，重命名规则为文件最后一次修改的时间+原文件名。
+	
+mergeDirectory.mergebylog(String,String)方法，可以根据log文件中记录的MD5值进行比对，从而不必每次都重新计算目标路径下的MD5值，文件合并速度更快。首先是判断目标路径下是否存在存放MD5值的log文件，若不存在则重新计算MD5值并存入log文件。若存在则直接读取MD5值存入HashMap dict。对源目录下进行文件去重操作，之后比较源目录下文件的MD5值是否在dict中并比较文件名是否在existfilesname中。当满足判断条件复制文件完成后将该文件的MD5值存入log文件，从而提交合并速度。
+	

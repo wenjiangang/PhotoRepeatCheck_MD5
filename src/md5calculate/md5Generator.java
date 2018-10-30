@@ -52,11 +52,11 @@ public class md5Generator {
 
 	public static void main(String[] args) {
 		long beginTime = System.currentTimeMillis();
-		File file = new File("C:/Users/Unicom/Desktop/source/a.txt"); //测试，空的txt和word具有相同的md5
+		File file = new File("C:\\Users\\jacky\\Desktop\\冲洗照片\\IMG_6277.jpg"); //测试，空的txt和word具有相同的md5
 		System.out.println(file);
 		
 		String md5 = getMD5(file);
-		File file1 = new File("C:/Users/Unicom/Desktop/source/b.docx");
+		File file1 = new File("F:\\所有照片\\IMG_6277.jpg");
 		String md5_1 = getMD5(file1);
 		long endtime = System.currentTimeMillis();
 		System.out.println("MD5:\n" + md5 +"\n"+md5_1+ "\n 耗时:" + ((endtime - beginTime) ) + "ms");

@@ -1,18 +1,13 @@
 package md5calculate;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-
-import javafx.print.Collation;
 import md5calculate.stampToDate;
 
 /*
@@ -100,17 +95,16 @@ public class mergeDirectory {
  */
 		HashMap<String, String> dict=new HashMap<String, String>();//创建一个map用于存放目标路径下的md5码和对应的文件路径
 		HashMap<String, String> existfilesname=new HashMap<String, String>();//创建一个map用于存目标路径下文件的名称，用于后期与后期进行比较
+//		deleteRepeat.deleteRepeat(pathDestination);//先删除目标目录下重复的文件
 		try {
 			File logname = new File(pathDestination+"/md5log.txt");
 			if (!logname.exists()) {
 				logname.createNewFile(); // 如果不存在的话创建新文件
-//				deleteRepeat.deleteRepeat(pathDestination);//先删除目标目录下重复的文件
 				ArrayList<String> listDestination = filesArray.getFiles(pathDestination);//用于存放目录下所有的文件路径
 				System.out.println("destination file numbers:" + listDestination.size());
 
 				for(int i=0;i<listDestination.size();i++){
 					File t = new File(listDestination.get(i));
-//					dict.put(md5Generator.getMD5(t), listDestination.get(i));
 					readLog.writeFile(pathDestination+"/md5log.txt", md5Generator.getMD5(t)+"="+ t.getName().toLowerCase());//将新文件的md值和文件名小写存入log文本
 					existfilesname.put(t.getName().toLowerCase(), "1");
 				}
@@ -121,10 +115,8 @@ public class mergeDirectory {
 				System.out.println("destination file numbers:" + listDestination.size());
 				dict=readLog.readFile(pathDestination+"/md5log.txt");//读取md5log文件中的数据存入dict
 				Collection<String> values=dict.values();
-//				System.out.println(existfilesname);
 				for(Object object:values) {
-					existfilesname.put(object.toString().toLowerCase(), "1");
-//					
+					existfilesname.put(object.toString().toLowerCase(), "1");	
 				}
 				
 				for(int i=0;i<listDestination.size();i++){
@@ -142,23 +134,15 @@ public class mergeDirectory {
 			e.printStackTrace();
 		}
 		
-
-//		System.out.println(existfilesname+"\r\n");
 //		deleteRepeat.deleteRepeat(pathSource);//先删除源目录下重复的文件
 		ArrayList<String> listSource = filesArray.getFiles(pathSource);//用于存放目录下所有的文件路径
 		System.out.println("source file numbers:" + listSource.size());
 		
 		int mark=0;
 		int repeat=0;
-//		System.out.println(dict);
 		for(int i=0;i<listSource.size();i++){
 			File k = new File(listSource.get(i));
 			String md5=md5Generator.getMD5(k);
-//			System.out.println(md5);
-//			System.out.println(k.getName());
-//			System.out.println(existfilesname.get(k.getName()));
-//			System.out.println(existfilesname.get("IMG_0471.jpg"));
-//			System.out.println(existfilesname);
 
 			if((dict.get(md5)==null) && (existfilesname.get(k.getName().toLowerCase())!=null)){
 				/*

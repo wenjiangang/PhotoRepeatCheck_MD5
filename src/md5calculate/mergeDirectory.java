@@ -166,7 +166,7 @@ public class mergeDirectory {
 				 * 
 				 */
 				Path fromPath=Paths.get(listSource.get(i));
-				Path toPath=Paths.get(pathDestination+"/"+stampToDate.stamptodate(k.lastModified()).toLowerCase()+" "+k.getName());//目标目录中的文件名重命名前面加上文件修改的日期
+				Path toPath=Paths.get(pathDestination+"/"+stampToDate.stamptodate(k.lastModified())+" "+k.getName());//目标目录中的文件名重命名前面加上文件修改的日期
 				System.out.println("move "+fromPath+"---->"+toPath);
 				try{
 					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
@@ -182,25 +182,22 @@ public class mergeDirectory {
 				
 			}
 			
-			else if((dict.get(md5)==null) && (existfilesname.get(k.getName())==null)) {
+			else if((dict.get(md5)==null) && (existfilesname.get(k.getName().toLowerCase())==null)) {
 				/*
 				 * 检查该md5值是否在目标目录中存在，并且文件名在目标目录中是否存在，若md5值不存在且文件名不存在，则直接移动文件
 				 * 
 				 */
-//				System.out.println(existfilesname);
-				System.out.println(existfilesname.get("IMG_0471.jpg"));
-				System.out.println(existfilesname.get("IMG_20150828_070541.jpg"));
-				System.out.println("----------------------------------------");
+
 				Path fromPath=Paths.get(listSource.get(i));
 				Path toPath=Paths.get(pathDestination+"/"+k.getName());
 				System.out.println("move "+fromPath+"---->"+toPath);
 				try{
 					Files.copy(fromPath,toPath); //用于复制文件，不删除原文件
 //					Files.move(fromPath,toPath); //用于移动文件，删除原文件
-					existfilesname.put(k.getName(), k.getName()); //用于在新目录下添加文件名称记录，源文件中可能不同的目录下具有相同的文件名但是md5不一样的情况
+					existfilesname.put(k.getName().toLowerCase(), "1"); //用于在新目录下添加文件名称记录，源文件中可能不同的目录下具有相同的文件名但是md5不一样的情况
 					mark++;
-					readLog.writeFile(pathDestination+"/md5log.txt", md5+"="+k.getName());
-					dict.put(md5,k.getName());//往dict中存入新的文件信息
+					readLog.writeFile(pathDestination+"/md5log.txt", md5+"="+k.getName().toLowerCase());
+					dict.put(md5,k.getName().toLowerCase());//往dict中存入新的文件信息
 				}catch (IOException e){
 					e.printStackTrace();
 				}
